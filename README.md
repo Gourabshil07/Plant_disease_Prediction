@@ -23,6 +23,10 @@ Users can upload a leaf image and instantly get:
 - Supports .jpg image uploads
 
 # Model file excluded from GitHub (download separately)
+📥 Model Download
+
+You can download the trained model file from here:
+👉 https://drive.google.com/file/d/1KB2ewrwUXBxfOSE8zWgQhP37zNfTyYOZ/view?usp=drive_link
 
 # 🧠 Tech Stack
 
