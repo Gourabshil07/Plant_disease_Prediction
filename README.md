@@ -1,4 +1,4 @@
-# Plant_disease_Prediction
+# Plant_Disease_Prediction
 
 A deep learning–based web application that detects plant leaf diseases from images.
 Built with Flask, TensorFlow/Keras, and a simple upload-based interface.
