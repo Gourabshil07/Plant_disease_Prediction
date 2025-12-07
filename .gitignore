@@ -3,9 +3,7 @@ models/
 *.keras
 
 # Ignore uploaded images
-uploadimages/
-*.jpg
-*.png
+uploadimages/temp_*
 
 # Python cache
 __pycache__/
