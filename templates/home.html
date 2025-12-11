@@ -32,6 +32,39 @@
     </div>
     {% endif %}
 
+    {% if result %}
+    <div>
+        <button onclick="playVoice('bn')">🔊 Bengali</button>
+        <button onclick="playVoice('hi')">🔊 Hindi</button>
+        <audio id="player" controls style="display:none;"></audio>
+    </div>
+    {% endif %}
+
+    <script>
+function playVoice(lang) {
+    const text = `
+Disease: {{ name }}
+Cause: {{ cause }}
+Cure: {{ cure }}
+`;
+
+    fetch("/speak", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({text: text, lang: lang})
+    })
+    .then(res => res.json())
+    .then(data => {
+        let player = document.getElementById("player");
+        player.src = data.audio_url;
+        player.style.display = "block";
+        player.play();
+    });
+}
+</script>
+
+
+
 </div>
 
 </body>

@@ -5,6 +5,15 @@ import uuid
 import tensorflow as tf
 import os
 
+
+from googletrans import Translator
+from gtts import gTTS
+from flask import send_file
+
+translator = Translator()
+
+
+
 app = Flask(__name__)
 
 model = tf.keras.models.load_model("models/plant_disease_prediction_model.keras")
@@ -22,6 +31,28 @@ def uploaded_images(filename):
 @app.route('/', methods=['GET'])
 def home():
     return render_template('home.html')
+
+
+
+#voice translation function
+
+@app.route('/speak', methods=['POST'])
+def speak():
+    data = request.get_json()
+    text = data.get("text")
+    lang = data.get("lang")  
+
+    # Translate text
+    translated = translator.translate(text, dest=lang).text
+
+    # Generate voice file
+    tts = gTTS(text=translated, lang=lang)
+    filename = f"voice_{uuid.uuid4().hex}.mp3"
+    filepath = os.path.join("uploadimages", filename)
+    tts.save(filepath)
+
+    return {"audio_url": f"/uploadimages/{filename}"}
+
 
 
 def extract_features(image):
